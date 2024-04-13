@@ -11,6 +11,7 @@ import { STATUSES } from '../constants/ResponseStatuses';
 
 import {
   generateAccessToken,
+  getErrorMessage,
   sendSms,
 } from '../helpers';
 
@@ -28,15 +29,18 @@ const UserController = {
   login: async (req, res) => {
     const {
       user: {
-        id, email, role, phonenumber,
+        id, email, role, phonenumber, status,
       },
     } = req;
-    const userData = {
-      id, email, role, phonenumber,
-    };
-    const accesstoken = await generateAccessToken(userData);
+    if (status === 'ACTIVE') {
+      const userData = {
+        id, email, role, phonenumber,
+      };
+      const accesstoken = await generateAccessToken(userData);
 
-    res.json({ accesstoken, userData });
+      return res.json({ accesstoken, userData });
+    }
+    return res.status(400).json(getErrorMessage('message', 'This account is no longer active'));
   },
 
   // createUser: async (req, res) => {

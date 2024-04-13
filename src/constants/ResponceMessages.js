@@ -5,6 +5,7 @@ export const MESSAGES = {
   FOUND: 'Data found successfully!',
   NOT_FOUND: 'Data not found!',
   NOT_CONTENT: 'No content!',
+  NOT_DELETED: 'Not deleted!',
   DELETED: 'Deleted successfully!',
   UPDATED: 'Updated successfully',
   NOT_UPDATED: 'Not updated',

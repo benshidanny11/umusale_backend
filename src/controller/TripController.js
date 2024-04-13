@@ -29,6 +29,7 @@ const TripController = {
   requestTrip: async (req, res) => {
     const tripId = uuid();
     const { body } = req;
+
     const tripObject = {
       tripid: tripId,
       driverid: body.driverid,
@@ -90,7 +91,7 @@ const TripController = {
     if (trip[0] === 0) {
       return res.status(STATUSES.BAD_REQUEST).send({ status: STATUSES.BAD_REQUEST, message: MESSAGES.NOT_UPDATED });
     }
-    return res.status(STATUSES.OK).send({ status: STATUSES.OK, message: `${MESSAGES.STATUS_CHANGED} ${tripObject.status === 'APPROVED' ? ' approved' : ' rejected'}` });
+    return res.status(STATUSES.OK).send({ status: STATUSES.OK, message: `${MESSAGES.STATUS_CHANGED} ${tripObject.tripstatus === 'APPROVED' ? ' approved' : ' rejected'}` });
   },
 
 };

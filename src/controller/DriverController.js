@@ -49,6 +49,7 @@ const DriverController = {
       username: body.phonenumber,
       userrole: 'DRIVER',
       extid: driverId,
+      status: 'ACTIVE',
     };
 
     const walletData = {
@@ -146,15 +147,25 @@ const DriverController = {
     }
     return res.status(STATUSES.OK).send({ status: STATUSES.OK, message: `${MESSAGES.STATUS_CHANGED} ${driverObject.status === 'APPROVED' ? ' approved' : ' rejected'}` });
   },
-  // deleteUser: async (req, res) => {
-  //   const { id } = req.params;
-  //   const user = await User.findOne({ where: { id } });
-  //   if (!user) {
-  //     return res.status(STATUSES.NOTFOUND).send({ status: STATUSES.NOTFOUND, message: MESSAGES.NOT_FOUND });
-  //   }
-  //   await user.destroy();
-  //   return res.status(STATUSES.OK).send({ status: STATUSES.OK, message: MESSAGES.DELETED });
-  // },
+  deleteDriverAccount: async (req, res) => {
+    const driverObject = {
+      status: 'DORMANT',
+    };
+
+    const userData = {
+      status: 'DORMANT',
+    };
+
+    const driver = await Driver.update(driverObject, { where: { driverid: req.params.id } });
+    const user = await User.update(userData, {
+      where:
+          { extid: req.params.id },
+    });
+    if (user[0] === 0 || driver[0] === 0) {
+      return res.status(STATUSES.BAD_REQUEST).send({ status: STATUSES.BAD_REQUEST, message: MESSAGES.NOT_DELETED });
+    }
+    return res.status(STATUSES.OK).send({ status: STATUSES.OK, message: MESSAGES.DELETED });
+  },
 
 };
 

@@ -22,5 +22,6 @@ router.get('/alldrivers', verifyAccessToken, UserMiddle.checkISAdmin, Driver.fin
 router.get('/allaproveddrivers', Driver.findAllAproved);
 router.get('/getdriverdata/:id', verifyAccessToken, UserMiddle.checkISDriver, Driver.getDriverData);
 router.put('/aproveorrejectdriver/:id', Validator('aproveOrReject'), verifyAccessToken, UserMiddle.checkISAdmin, Driver.aproveDriver);
+router.delete('/deletedriveraccount/:id', verifyAccessToken, UserMiddle.checkISDriver, Driver.deleteDriverAccount);
 
 export default router;
