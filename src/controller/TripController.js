@@ -59,27 +59,6 @@ const TripController = {
       driverTrips,
     });
   },
-  // getDriverData: async (req, res) => {
-  //   const {
-  //     params: { id },
-  //   } = req;
-  //   let driver = await Driver.findOne({
-  //     include: [
-  //       {
-  //         model: Wallet,
-  //       },
-  //     ],
-  //     where: { driverid: id },
-  //   });
-  // driver = driver ? driver.dataValues : null;
-  // if (!driver) {
-  //   res.status(STATUSES.NOTFOUND).json({ message: MESSAGES.NOT_FOUND });
-  // } else {
-  //   res.json({
-  //     driver,
-  //   });
-  // }
-  //  },
 
   aproveOrReject: async (req, res) => {
     const { body } = req;

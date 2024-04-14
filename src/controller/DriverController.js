@@ -19,8 +19,6 @@ import {
   Driver, User, Wallet,
 } from '../db/models';
 
-const { Op } = require('sequelize');
-
 dotenv.config();
 
 const DriverController = {

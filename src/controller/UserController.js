@@ -40,31 +40,8 @@ const UserController = {
 
       return res.json({ accesstoken, userData });
     }
-    return res.status(400).json(getErrorMessage('message', 'This account is no longer active'));
+    return res.status(STATUSES.BAD_REQUEST).json(getErrorMessage('message', 'This account is no longer active'));
   },
-
-  // createUser: async (req, res) => {
-  //   const { body } = req;
-  //   const password = generatePassword().encriptedPasword;
-  //   const userObject = {
-  //     id: uuid(),
-  //     email: body.email,
-  //     phonenumber: body.phonenumber,
-  //     password,
-  //     firstname: body.firstname,
-  //     lastname: body.lastname,
-  //     role: body.role,
-  //   };
-  //   let newUser = await User.create(userObject);
-  //   newUser = newUser?.dataValues;
-  //   if (!newUser) return res.sendStatus(500);
-  //   await sendSms({
-  //     receiver: body.phonenumber,
-  //     sender: 'E-RANGA',
-  //     body: `Hello ${body.lastname}! Your credentials are Username: ${body.phonenumber}, Password: ${generatePassword().plainPassword}`,
-  //   });
-  //   res.status(STATUSES.CREATED).json({ status: STATUSES.CREATED, message: MESSAGES.CREATED });
-  // },
 
   findAll: async (req, res) => {
     const { email: emailCurrentUser } = req.authUser;
@@ -115,31 +92,6 @@ const UserController = {
       });
     }
   },
-
-  // updateUser: async (req, res) => {
-  //   const { body } = req;
-  //   const data = {
-  //     email: body.email,
-  //     phonenumber: body.phonenumber,
-  //     firstname: body.firstname,
-  //     lastname: body.lastname,
-  //     role: body.role,
-  //   };
-  //   const user = await User.update(data, { where: { id: req.params.id } });
-  //   if (user[0] === 0) {
-  //     return res.status(STATUSES.BAD_REQUEST).send({ status: STATUSES.BAD_REQUEST, message: MESSAGES.NOT_UPDATED });
-  //   }
-  //   return res.status(STATUSES.OK).send({ status: STATUSES.OK, message: MESSAGES.UPDATED });
-  // },
-  // deleteUser: async (req, res) => {
-  //   const { id } = req.params;
-  //   const user = await User.findOne({ where: { id } });
-  //   if (!user) {
-  //     return res.status(STATUSES.NOTFOUND).send({ status: STATUSES.NOTFOUND, message: MESSAGES.NOT_FOUND });
-  //   }
-  //   await user.destroy();
-  //   return res.status(STATUSES.OK).send({ status: STATUSES.OK, message: MESSAGES.DELETED });
-  // },
 
 };
 
