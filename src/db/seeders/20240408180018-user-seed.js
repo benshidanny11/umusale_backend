@@ -20,7 +20,7 @@ module.exports = {
         phonenumber: process.env.ADMIN_PHONE_NUMBER,
         username: process.env.ADMIN_USERNAME,
         userrole: 'SUPPER_ADMIN',
-        status: 'STATUS',
+        status: 'ACTIVE',
         extid: uuidv4(),
         createdAt: new Date(),
         updatedAt: new Date(),

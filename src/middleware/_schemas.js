@@ -52,6 +52,21 @@ const tripdestination = Joi.string()
   .required()
   .label('Trip destination is required');
 
+const planname = Joi.string()
+  .min(5)
+  .required()
+  .label('Plan name is requied');
+
+const plandescription = Joi.string()
+  .min(5)
+  .required()
+  .label('Plan description is requied');
+
+const planprice = Joi.number()
+  .min(5)
+  .required()
+  .label('Plan price is requied, should be number');
+
 schemas.login = Joi.object().keys({
   phonenumber,
   password,
@@ -87,6 +102,12 @@ schemas.trip = Joi.object().keys({
   clientphonenumber: phonenumber,
   triporigin,
   tripdestination,
+});
+
+schemas.plan = Joi.object().keys({
+  planname,
+  plandescription,
+  planprice,
 });
 
 export default schemas;

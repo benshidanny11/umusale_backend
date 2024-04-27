@@ -14,4 +14,5 @@ export const MESSAGES = {
   NOT_CREATED: 'Not created',
   UNAUTHORIZED: 'You\'re not allowed to perform this request',
   STATUS_CHANGED: 'Status changed to',
+  INTERNAL_SERVER: 'Internal server error',
 };

@@ -25,7 +25,6 @@ const DriverController = {
 
   createDriver: async (req, res) => {
     const driverId = uuid();
-
     const { body } = req;
     const driverObject = {
       driverid: driverId,
@@ -47,7 +46,7 @@ const DriverController = {
       username: body.phonenumber,
       userrole: 'DRIVER',
       extid: driverId,
-      status: 'ACTIVE',
+      status: 'PENDING',
     };
 
     const walletData = {
@@ -139,23 +138,24 @@ const DriverController = {
       status: body.status,
     };
 
+    const userObject = {
+      status: body.status === 'APPROVED' ? 'ACTIVE' : body.status,
+    };
+
     const driver = await Driver.update(driverObject, { where: { driverid: req.params.id } });
+    const user = await User.update(userObject, { where: { extid: req.params.id } });
     if (driver[0] === 0) {
       return res.status(STATUSES.BAD_REQUEST).send({ status: STATUSES.BAD_REQUEST, message: MESSAGES.NOT_UPDATED });
     }
     return res.status(STATUSES.OK).send({ status: STATUSES.OK, message: `${MESSAGES.STATUS_CHANGED} ${driverObject.status === 'APPROVED' ? ' approved' : ' rejected'}` });
   },
   deleteDriverAccount: async (req, res) => {
-    const driverObject = {
+    const statusObj = {
       status: 'DORMANT',
     };
 
-    const userData = {
-      status: 'DORMANT',
-    };
-
-    const driver = await Driver.update(driverObject, { where: { driverid: req.params.id } });
-    const user = await User.update(userData, {
+    const driver = await Driver.update(statusObj, { where: { driverid: req.params.id } });
+    const user = await User.update(statusObj, {
       where:
           { extid: req.params.id },
     });
