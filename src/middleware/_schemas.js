@@ -67,6 +67,13 @@ const planprice = Joi.number()
   .required()
   .label('Plan price is requied, should be number');
 
+const paymentmode = Joi.string()
+  .min(3)
+  .required()
+  .label('Payment mode is requied');
+
+const planid = Joi.string().min(5).required().label('Plan id is required');
+
 schemas.login = Joi.object().keys({
   phonenumber,
   password,
@@ -108,6 +115,12 @@ schemas.plan = Joi.object().keys({
   planname,
   plandescription,
   planprice,
+});
+
+schemas.subscription = Joi.object().keys({
+  paymentmode,
+  driverid,
+  planid,
 });
 
 export default schemas;

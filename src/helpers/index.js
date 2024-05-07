@@ -10,6 +10,8 @@ import {
 
 import { sendSms } from './_sendSMS';
 
+import { getNextDate } from './_dateHelper';
+
 export {
   decodeToken,
   generatePassword,
@@ -17,4 +19,5 @@ export {
   getErrorMessage,
   decodeJWT,
   sendSms,
+  getNextDate,
 };

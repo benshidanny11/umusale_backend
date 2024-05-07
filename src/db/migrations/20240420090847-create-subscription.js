@@ -34,6 +34,9 @@ module.exports = {
       substatus: {
         type: Sequelize.STRING,
       },
+      paymentstatus: {
+        type: Sequelize.STRING,
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,

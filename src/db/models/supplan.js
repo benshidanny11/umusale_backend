@@ -24,6 +24,7 @@ module.exports = (sequelize, DataTypes) => {
     plandescription: DataTypes.STRING,
     planplice: DataTypes.DOUBLE,
     planstatus: DataTypes.STRING,
+    validitydays: DataTypes.INTEGER,
   }, {
     sequelize,
     modelName: 'SupPlan',

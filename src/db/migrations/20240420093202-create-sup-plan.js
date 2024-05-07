@@ -18,6 +18,9 @@ module.exports = {
       planplice: {
         type: Sequelize.DOUBLE,
       },
+      validitydays: {
+        type: Sequelize.INTEGER,
+      },
       planstatus: {
         type: Sequelize.STRING,
       },

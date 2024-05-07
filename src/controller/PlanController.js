@@ -11,6 +11,7 @@ import bcrypt from 'bcrypt';
 
 import { STATUSES } from '../constants/ResponseStatuses';
 import { MESSAGES } from '../constants/ResponceMessages';
+import { STRINGS } from '../constants/stringconstants';
 import {
   getErrorMessage,
 } from '../helpers';
@@ -33,6 +34,7 @@ const PlanController = {
         plantname: body.planname,
         plandescription: body.plandescription,
         planplice: body.planprice,
+        validitydays: body.planname === STRINGS.ANNUAL_SUB ? 365 : 31,
         planstatus: 'ACTIVE',
       };
 
@@ -57,6 +59,7 @@ const PlanController = {
       plantname: body.planname,
       plandescription: body.plandescription,
       planplice: body.planprice,
+      validitydays: body.planname === STRINGS.ANNUAL_SUB.name ? STRINGS.ANNUAL_SUB.days : STRINGS.MONTHLY_SUB.days,
     };
     const plan = await SupPlan.update(planObject, { where: { planid: req.params.id } });
 

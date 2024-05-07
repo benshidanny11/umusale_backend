@@ -32,6 +32,7 @@ module.exports = (sequelize, DataTypes) => {
     enddate: DataTypes.STRING,
     nextbillingdate: DataTypes.STRING,
     substatus: DataTypes.STRING,
+    paymentstatus: DataTypes.STRING,
   }, {
     sequelize,
     modelName: 'Subscription',
